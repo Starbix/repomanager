@@ -175,15 +175,15 @@ class Connection extends SQLite3
     public function checkMainTables()
     {
         /**
-         *  Si le nombre de tables présentes != 27 alors on tente de regénérer les tables
+         *  Si le nombre de tables présentes != 28 alors on tente de regénérer les tables
          */
-        if ($this->countMainTables() != 27) {
+        if ($this->countMainTables() != 28) {
             $this->generateMainTables();
 
             /**
              *  On compte de nouveau les tables après la tentative de re-génération, on retourne false si c'est toujours pas bon
              */
-            if ($this->countMainTables() != 27) {
+            if ($this->countMainTables() != 28) {
                 return false;
             }
         }
@@ -625,6 +625,18 @@ class Connection extends SQLite3
                 'false'
             )");
         }
+
+        /**
+         *  Generate mail_settings table if not exists
+         */
+        $this->exec("CREATE TABLE IF NOT EXISTS mail_settings (
+        EMAIL_RECIPIENT VARCHAR(255),
+        MAIL_SMTP_ENABLE CHAR(5), /* true, false */
+        MAIL_SMTP_HOST VARCHAR(255),
+        MAIL_SMTP_PORT INTEGER,
+        MAIL_SMTP_AUTH CHAR(5), /* true, false */
+        MAIL_SMTP_USERNAME VARCHAR(255),
+        MAIL_SMTP_PASSWORD VARCHAR(255))");
 
         /**
          *  Generate cve table if not exists

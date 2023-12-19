@@ -81,6 +81,9 @@
                     <div></div>
                 </div>
 
+                <br>
+                <h5>MAIL SETTINGS</h5>
+
                 <div class="settings-div">
                     <div>
                         <img src="/assets/icons/info.svg" class="icon-verylowopacity" title="Default contact for receiving emails. Currently, only scheduled tasks and their reminders are sending emails. You can specify multiple recipients." />
@@ -116,6 +119,106 @@
                         } ?>
                     </div>
                 </div>
+
+                <div class="settings-div">
+                    <div>
+                        <img src="/assets/icons/info.svg" class="icon-verylowopacity" title="" />
+                    </div>
+                    <div>
+                        <p>Use a SMTP server</p>
+                    </div>
+                    <div>
+                        <label class="onoff-switch-label">
+                            <input class="settings-param onoff-switch-input" param-name="mailSmtpEnable" type="checkbox" value="true" <?php echo (MAIL_SMTP_ENABLE === true) ? 'checked' : ''; ?>>
+                            <span class="onoff-switch-slider"></span>
+                        </label>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+
+                <?php
+                if (MAIL_SMTP_ENABLE) : ?>
+                    <div class="settings-div">
+                        <div>
+                            <img src="/assets/icons/info.svg" class="icon-verylowopacity" title="" />
+                        </div>
+                        <div>
+                            <p>Server address</p>
+                        </div>
+                        <div>
+                            <input class="settings-param" param-name="mailSmtpHost" type="text" value="<?= MAIL_SMTP_HOST ?>">
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+
+                    <div class="settings-div">
+                        <div>
+                            <img src="/assets/icons/info.svg" class="icon-verylowopacity" title="" />
+                        </div>
+                        <div>
+                            <p>Server port</p>
+                        </div>
+                        <div>
+                            <input class="settings-param" param-name="mailSmtpPort" type="number" value="<?= MAIL_SMTP_PORT ?>">
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+
+                    <div class="settings-div">
+                        <div>
+                            <img src="/assets/icons/info.svg" class="icon-verylowopacity" title="" />
+                        </div>
+                        <div>
+                            <p>Authentication required</p>
+                        </div>
+                        <div>
+                            <label class="onoff-switch-label">
+                                <input class="settings-param onoff-switch-input" param-name="mailSmtpEnable" type="checkbox" value="true" <?php echo (MAIL_SMTP_AUTH === true) ? 'checked' : ''; ?>>
+                                <span class="onoff-switch-slider"></span>
+                            </label>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+
+                    <?php
+                    /**
+                     *  If SMTP authentication is enabled
+                     */
+                    if (MAIL_SMTP_AUTH) : ?>
+                        <div class="settings-div">
+                            <div>
+                                <img src="/assets/icons/info.svg" class="icon-verylowopacity" title="" />
+                            </div>
+                            <div>
+                                <p>Username</p>
+                            </div>
+                            <div>
+                                <input class="settings-param" param-name="mailSmtpUsername" type="text" value="<?= MAIL_SMTP_USERNAME ?>">
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+
+                        <div class="settings-div">
+                            <div>
+                                <img src="/assets/icons/info.svg" class="icon-verylowopacity" title="" />
+                            </div>
+                            <div>
+                                <p>Password</p>
+                            </div>
+                            <div>
+                                <input class="settings-param" param-name="mailSmtpPassword" type="password" value="<?= MAIL_SMTP_PASSWORD ?>">
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <?php
+                    endif;
+                endif ?>
             </div>
 
             <h3>REPOSITORIES</h3>
@@ -167,6 +270,7 @@
                     </div>
                 </div>
 
+                <br>
                 <h5>MIRRORING SETTINGS</h5>
 
                 <div class="settings-div">

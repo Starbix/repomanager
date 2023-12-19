@@ -63,6 +63,9 @@ class Settings
          */
         date_default_timezone_set(TIMEZONE);
 
+        /**
+         *  Mail settings
+         */
         if (!defined('EMAIL_RECIPIENT')) {
             if (!empty($settings['EMAIL_RECIPIENT'])) {
                 define('EMAIL_RECIPIENT', explode(',', $settings['EMAIL_RECIPIENT']));
@@ -71,6 +74,54 @@ class Settings
                 $__LOAD_SETTINGS_MESSAGES[] = 'No recipient email adress is defined. ';
             }
         }
+
+        if (!defined('MAIL_SMTP_ENABLE')) {
+            if (!empty($settings['MAIL_SMTP_ENABLE'])) {
+                define('MAIL_SMTP_ENABLE', $settings['MAIL_SMTP_ENABLE']);
+            } else {
+                define('MAIL_SMTP_ENABLE', false);
+            }
+        }
+
+        if (!defined('MAIL_SMTP_HOST')) {
+            if (!empty($settings['MAIL_SMTP_HOST'])) {
+                define('MAIL_SMTP_HOST', $settings['MAIL_SMTP_HOST']);
+            } else {
+                define('MAIL_SMTP_HOST', '');
+            }
+        }
+
+        if (!defined('MAIL_SMTP_PORT')) {
+            if (!empty($settings['MAIL_SMTP_PORT'])) {
+                define('MAIL_SMTP_PORT', $settings['MAIL_SMTP_PORT']);
+            } else {
+                define('MAIL_SMTP_PORT', '');
+            }
+        }
+
+        if (!defined('MAIL_SMTP_AUTH')) {
+            if (!empty($settings['MAIL_SMTP_AUTH'])) {
+                define('MAIL_SMTP_AUTH', $settings['MAIL_SMTP_AUTH']);
+            } else {
+                define('MAIL_SMTP_AUTH', false);
+            }
+        }
+
+        if (!defined('MAIL_SMTP_USERNAME')) {
+            if (!empty($settings['MAIL_SMTP_USERNAME'])) {
+                define('MAIL_SMTP_USERNAME', $settings['MAIL_SMTP_USERNAME']);
+            } else {
+                define('MAIL_SMTP_USERNAME', '');
+            }
+        }
+
+        if (!defined('MAIL_SMTP_PASSWORD')) {
+            if (!empty($settings['MAIL_SMTP_PASSWORD'])) {
+                define('MAIL_SMTP_PASSWORD', $settings['MAIL_SMTP_PASSWORD']);
+            } else {
+                define('MAIL_SMTP_PASSWORD', '');
+            }
+        }  
 
         if (!defined('DEBUG_MODE')) {
             if (!empty($settings['DEBUG_MODE'])) {
